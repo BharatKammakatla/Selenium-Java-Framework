@@ -1,0 +1,7 @@
+Create a maven project
+Download basic dependecies, selenium-java and testng. Other dependencies will be added later
+Create Base class, Global Env properties file, download browser drivers.
+Create Base Test
+If MacOS --> Navigatet to the folder where chromedriver is present and run the following command in terminal: xattr -d com.apple.quarantine chromedriver
+Implement PageObject mechanism - create com.pageObjects and add pageObject classes to store objects of that page
+
