@@ -65,6 +65,11 @@
 			<version>5.0.2</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.codoid.products</groupId>
+			<artifactId>fillo</artifactId>
+			<version>1.21</version>
+		</dependency>
 
 
 	</dependencies>

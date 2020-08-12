@@ -19,9 +19,9 @@ import com.pageObjects.HomePage;
 public class ValidateFooter extends Base {
 	
 	public WebDriver driver;
-	Actions actions;
+	public Actions actions;
 	
-	private Logger log = LogManager.getLogger(Login.class.getName());
+	private Logger log = LogManager.getLogger(ValidateFooter.class.getName());
 	
 	@BeforeTest
 	public void initialize() throws IOException {

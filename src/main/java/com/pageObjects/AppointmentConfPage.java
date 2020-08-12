@@ -13,7 +13,7 @@ public class AppointmentConfPage {
 	}
 	
 	// All objects should be defined here
-	By title = By.cssSelector("h2");
+	private By title = By.cssSelector("h2");
 	
 	
 	// All methods should be defined here

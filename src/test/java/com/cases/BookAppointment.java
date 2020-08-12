@@ -2,6 +2,7 @@ package com.cases;
 
 import org.testng.annotations.Test;
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,23 +15,29 @@ import org.testng.annotations.Test;
 
 import com.actions.Actions;
 import com.base.Base;
+import com.codoid.products.exception.FilloException;
 import com.pageObjects.AppointmentConfPage;
 import com.pageObjects.BookAppointmentPage;
 import com.pageObjects.HomePage;
 import com.pageObjects.LoginPage;
+import com.utils.Utils;
 
 public class BookAppointment extends Base {
 	
 	public WebDriver driver;
-	Actions actions;
+	public Actions actions;
 	
 	private Logger log = LogManager.getLogger(BookAppointment.class.getName());
+	private HashMap<String, String> data;
 
 	@BeforeTest
-	public void initialize() throws IOException {
+	public void initialize() throws IOException, FilloException {
+		
 		driver = initializeDriver();
-		actions = new Actions(driver);
 		log.info("Driver is initialized.");
+		data = new Utils().getTestData("TC2");
+		actions = new Actions(driver);
+			
 	}
 
 	@Test
@@ -44,15 +51,15 @@ public class BookAppointment extends Base {
 		actions.navigateTo(prop.getProperty("url"));
 		actions.click(hp.getMenuBtn());
 		actions.click(hp.getLogin());
-		actions.enterText(lp.getUsername(), "John Doe");
-		actions.enterText(lp.getPassword(), "ThisIsNotAPassword");
+		actions.enterText(lp.getUsername(), data.get("Username"));
+		actions.enterText(lp.getPassword(), data.get("Password"));
 		actions.click(lp.getLoginBtn());
 		//add a wait function
-		actions.selectFromDropdown(ba.getFacilityDD(), "Hongkong CURA Healthcare Center");
+		actions.selectFromDropdown(ba.getFacilityDD(), data.get("Facility"));
 		actions.click(ba.getReadmission());
 		actions.click(ba.getMedicaid());
-		actions.enterText(ba.getVisitDate(), "08/08/2020");
-		actions.enterText(ba.getComment(), "Test message: Regular check up");
+		actions.enterText(ba.getVisitDate(), data.get("Visit Date"));
+		actions.enterText(ba.getComment(), data.get("Comment"));
 		actions.click(ba.getBookBtn());
 		
 		Assert.assertTrue(ac.getTitle().isDisplayed());

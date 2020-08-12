@@ -2,6 +2,7 @@ package com.cases;
 
 import org.testng.annotations.Test;
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,22 +15,28 @@ import org.testng.annotations.Test;
 
 import com.actions.Actions;
 import com.base.Base;
+import com.codoid.products.exception.FilloException;
 import com.pageObjects.HomePage;
 import com.pageObjects.LoginPage;
+import com.utils.Utils;
 import com.pageObjects.BookAppointmentPage;
 
 public class Login extends Base {
 	
 	public WebDriver driver;
-	Actions actions;
+	public Actions actions;
 	
 	private Logger log = LogManager.getLogger(Login.class.getName());
+	private HashMap<String, String> data;
 
 	@BeforeTest
-	public void initialize() throws IOException {
+	public void initialize() throws IOException, FilloException {
+		
 		driver = initializeDriver();
-		actions = new Actions(driver);
 		log.info("Driver is initialized.");
+		data = new Utils().getTestData("TC1");
+		actions = new Actions(driver);
+		
 	}
 
 	@Test
@@ -42,8 +49,8 @@ public class Login extends Base {
 		actions.navigateTo(prop.getProperty("url"));
 		actions.click(hp.getMenuBtn());
 		actions.click(hp.getLogin());
-		actions.enterText(lp.getUsername(), "John Doe");
-		actions.enterText(lp.getPassword(), "ThisIsNotAPassword");
+		actions.enterText(lp.getUsername(), data.get("Username"));
+		actions.enterText(lp.getPassword(), data.get("Password"));
 		actions.click(lp.getLoginBtn());
 		Assert.assertTrue(ba.getTitle().isDisplayed());
 		log.info("Successfully Logged In");

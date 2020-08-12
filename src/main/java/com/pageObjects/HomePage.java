@@ -13,10 +13,10 @@ public class HomePage {
 	}
 	
 	// All objects should be defined here
-	By menuBtn = By.cssSelector("a[id='menu-toggle']");
-	By login = By.cssSelector("a[href*='login']");
-	By title = By.cssSelector("h1");
-	By footer = By.cssSelector("footer");
+	private By menuBtn = By.cssSelector("a[id='menu-toggle']");
+	private By login = By.cssSelector("a[href*='login']");
+	private By title = By.cssSelector("h1");
+	private By footer = By.cssSelector("footer");
 	
 	
 	// All methods should be defined here

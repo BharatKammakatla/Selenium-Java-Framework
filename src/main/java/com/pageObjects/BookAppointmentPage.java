@@ -13,13 +13,13 @@ public class BookAppointmentPage {
 	}
 	
 	// All objects should be defined here
-	By title = By.cssSelector("h2");
-	By facilityDD = By.cssSelector("select[id=combo_facility]");
-	By readmission = By.cssSelector("input[id=chk_hospotal_readmission]");
-	By medicaid = By.cssSelector("input[id=radio_program_medicaid]");
-	By visitDate = By.cssSelector("input[id=txt_visit_date]");
-	By comment = By.cssSelector("textarea[id=txt_comment]");
-	By bookBtn = By.cssSelector("button[id=btn-book-appointment]");
+	private By title = By.cssSelector("h2");
+	private By facilityDD = By.cssSelector("select[id=combo_facility]");
+	private By readmission = By.cssSelector("input[id=chk_hospotal_readmission]");
+	private By medicaid = By.cssSelector("input[id=radio_program_medicaid]");
+	private By visitDate = By.cssSelector("input[id=txt_visit_date]");
+	private By comment = By.cssSelector("textarea[id=txt_comment]");
+	private By bookBtn = By.cssSelector("button[id=btn-book-appointment]");
 	
 	// All methods should be defined here
 	public WebElement getTitle() {
