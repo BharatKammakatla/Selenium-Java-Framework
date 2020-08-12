@@ -4,4 +4,19 @@ Create Base class, Global Env properties file, download browser drivers.
 Create Base Test
 If MacOS --> Navigatet to the folder where chromedriver is present and run the following command in terminal: xattr -d com.apple.quarantine chromedriver
 Implement PageObject mechanism - create com.pageObjects and add pageObject classes to store objects of that page
+Parameterizing test data with help of TestNG Dataprovider
+Assertions
+Create testng.xml file and create a testng suite containing all the tests.
+Add @BeforeTest and @AfterTest methods
+Integrate testng.xml into maven pom.xml. So that when use maven test...it triggers testng.xml...it inturn triggers all our test cases.
+Adding logs using log4j
+Modify testng.xml to create individual tests instead of all tests wrapped into a single test tag
+Intialize a local webdriver instance to support parallel execution
+Add parallel='tests' attribure in testng.xml to run tests parallely
+Add screenshots on failures using TestNG Listeners
+Add TestNG listener information to testng.xml file
+Add extent reports to TestNG listener
+Making f/w and extent reports thread safe uisng ThreadLocal<ExtentTest> class
+
+
 

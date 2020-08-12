@@ -8,30 +8,35 @@ import java.io.IOException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.actions.Actions;
 import com.base.Base;
 import com.pageObjects.HomePage;
 
 public class ValidateFooter extends Base {
 	
-	public static Logger log = LogManager.getLogger(ValidateFooter.class.getName());
+	public WebDriver driver;
+	Actions actions;
+	
+	private Logger log = LogManager.getLogger(Login.class.getName());
 	
 	@BeforeTest
 	public void initialize() throws IOException {
 		driver = initializeDriver();
 		log.info("Driver is initialized.");
-		driver.get(prop.getProperty("url"));
-		log.info("Navigated to Home page");
+		actions = new Actions(driver);
+		actions.navigateTo(prop.getProperty("url"));
 	}
 	
 	@Test
-	public void navigateToHomePage() throws IOException {
+	public void checkFooter() throws IOException {
 
 		HomePage hp = new HomePage(driver);
-
-		AssertJUnit.assertTrue(hp.getFooter().isDisplayed());
+		
+		Assert.assertTrue(hp.getFooter().isDisplayed());
 		log.info("Footer is displayed");
 
 	}

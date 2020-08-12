@@ -14,16 +14,17 @@ import org.testng.annotations.Test;
 
 import com.actions.Actions;
 import com.base.Base;
+import com.pageObjects.AppointmentConfPage;
+import com.pageObjects.BookAppointmentPage;
 import com.pageObjects.HomePage;
 import com.pageObjects.LoginPage;
-import com.pageObjects.BookAppointmentPage;
 
-public class Login extends Base {
+public class BookAppointment extends Base {
 	
 	public WebDriver driver;
 	Actions actions;
 	
-	private Logger log = LogManager.getLogger(Login.class.getName());
+	private Logger log = LogManager.getLogger(BookAppointment.class.getName());
 
 	@BeforeTest
 	public void initialize() throws IOException {
@@ -33,11 +34,12 @@ public class Login extends Base {
 	}
 
 	@Test
-	public void performLogin() {
+	public void bookAppointment() {
 		
 		HomePage hp = new HomePage(driver);
 		LoginPage lp = new LoginPage(driver);
 		BookAppointmentPage ba = new BookAppointmentPage(driver);
+		AppointmentConfPage ac = new AppointmentConfPage(driver);
 		
 		actions.navigateTo(prop.getProperty("url"));
 		actions.click(hp.getMenuBtn());
@@ -45,27 +47,18 @@ public class Login extends Base {
 		actions.enterText(lp.getUsername(), "John Doe");
 		actions.enterText(lp.getPassword(), "ThisIsNotAPassword");
 		actions.click(lp.getLoginBtn());
-		Assert.assertTrue(ba.getTitle().isDisplayed());
-		log.info("Successfully Logged In");
+		//add a wait function
+		actions.selectFromDropdown(ba.getFacilityDD(), "Hongkong CURA Healthcare Center");
+		actions.click(ba.getReadmission());
+		actions.click(ba.getMedicaid());
+		actions.enterText(ba.getVisitDate(), "08/08/2020");
+		actions.enterText(ba.getComment(), "Test message: Regular check up");
+		actions.click(ba.getBookBtn());
+		
+		Assert.assertTrue(ac.getTitle().isDisplayed());
 
 	}
 
-	@DataProvider
-	public Object[][] getData() {
-		// Each row is set of test data for a test case
-		// Each column is a value in a set of test data
-		Object[][] data = new Object[2][2];
-
-		// First set of test data
-		data[0][0] = "John Doe";
-		data[0][1] = "ThisIsNotAPassword";
-
-		// Second set of test data
-		data[1][0] = "testuser2";
-		data[1][1] = "testpwd2";
-
-		return data;
-	}
 
 	@AfterTest
 	public void teardown() {

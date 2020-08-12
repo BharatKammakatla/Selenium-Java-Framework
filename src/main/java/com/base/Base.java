@@ -19,29 +19,29 @@ public class Base {
 
 		prop = new Properties();
 		FileInputStream fis = new FileInputStream(
-				"/Users/bharatkammakatla/TestAutomation/SeleniumJavaFramework/src/main/resources/env.properties");
+				System.getProperty("user.dir") + "/src/main/resources/config.properties");
 
 		prop.load(fis);
 		String browserName = prop.getProperty("browser");
 
 		if (browserName.equals("chrome")) {
 			System.setProperty("webdriver.chrome.driver",
-					"/Users/bharatkammakatla/TestAutomation/SeleniumJavaFramework/src/main/resources/chromedriver");
+					System.getProperty("user.dir") + "/src/main/resources/chromedriver");
 			driver = new ChromeDriver();
 		} else if (browserName.equals("firefox")) {
 			System.setProperty("webdriver.gecko.driver",
-					"/Users/bharatkammakatla/TestAutomation/SeleniumJavaFramework/src/main/resources/geckodriver");
+					System.getProperty("user.dir") + "/src/main/resources/resources/geckodriver");
 			driver = new FirefoxDriver();
 		} else if (browserName.equals("ie")) {
 			System.setProperty("webdriver.ie.driver",
-					"/Users/bharatkammakatla/TestAutomation/SeleniumJavaFramework/src/main/resources/IEDriverServer");
+					System.getProperty("user.dir") + "/src/main/resources/IEDriverServer");
 			driver = new InternetExplorerDriver();
 		} else {
 			System.out.println(browserName + " is not a valid browser");
 		}
-		
+
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		
+
 		return driver;
 
 	}
